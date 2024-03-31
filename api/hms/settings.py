@@ -68,20 +68,20 @@ WSGI_APPLICATION = "hms.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DATABASE"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),
-        "PORT": int(os.getenv("POSTGRES_DB_PORT", default=5432)),
-        "OPTIONS": {"sslmode": "require"},
-        "DISABLE_SERVER_SIDE_CURSORS": True,
-    },
     # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
+    #     "ENGINE": "django.db.backends.postgresql",
+    #     "NAME": os.getenv("POSTGRES_DATABASE"),
+    #     "USER": os.getenv("POSTGRES_USER"),
+    #     "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+    #     "HOST": os.getenv("POSTGRES_HOST"),
+    #     "PORT": int(os.getenv("POSTGRES_DB_PORT", default=5432)),
+    #     "OPTIONS": {"sslmode": "require"},
+    #     "DISABLE_SERVER_SIDE_CURSORS": True,
+    # },
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 
@@ -143,11 +143,16 @@ STATIC_ROOT = BASE_DIR / "static_files_build" / "static"
 if not DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
     # Enable security settings by default
-    SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", default=31536000))
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
-        "SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True
-    )
-    SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD", default=True)
-    SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", default=True)
-    CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE", default=True)
-    SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", default=True)
+    # SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", default=31536000))
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
+    #     "SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True
+    # )
+    # SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD", default=True)
+    # SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", default=True)
+    # CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE", default=True)
+    # SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", default=True)
+
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False

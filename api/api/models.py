@@ -109,3 +109,33 @@ class Inventory(BaseModel):
         """Inventory DB table name"""
 
         db_table = "inventory"
+
+
+class TestingLab(BaseModel):
+    """Inventory class"""
+
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    test_name = models.CharField(max_length=100)
+    result = models.CharField(max_length=100, blank=True, null=True)
+    date_and_time = models.DateTimeField(default=None, blank=True, null=True)
+
+    class Meta:
+        """Inventory DB table name"""
+
+        db_table = "testinglab"
+
+
+class BloodBanks(BaseModel):
+    """Inventory class"""
+
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    bloodsamples = models.PositiveIntegerField()
+    blood_group = models.CharField(max_length=100)
+    donor_name = models.CharField(max_length=100)
+
+    class Meta:
+        """Inventory DB table name"""
+
+        db_table = "bloodbanks"

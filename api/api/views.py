@@ -10,6 +10,8 @@ from api.models import (
     Appointment,
     Prescription,
     Inventory,
+    TestingLab,
+    BloodBanks,
 )
 from api.serializers import (
     PatientSerializer,
@@ -18,6 +20,8 @@ from api.serializers import (
     AppointmentSerializer,
     PrescriptionSerializer,
     InventorySerializer,
+    TestingLabSerializer,
+    BloodBanksSerializer,
 )
 
 
@@ -35,6 +39,8 @@ class StatsView(APIView):
                 "appointments": Appointment.objects.count(),
                 "prescriptions": Prescription.objects.count(),
                 "inventory": Inventory.objects.count(),
+                "testinglabs": TestingLab.objects.count(),
+                "bloodbanks": BloodBanks.objects.count(),
             }
 
             return Response(data)
@@ -78,3 +84,15 @@ class PrescriptionViewSet(viewsets.ModelViewSet):
 class InventoryViewSet(viewsets.ModelViewSet):
     queryset = Inventory.objects.all()
     serializer_class = InventorySerializer
+
+
+# TestingLab Viewset
+class TestingLabViewSet(viewsets.ModelViewSet):
+    queryset = TestingLab.objects.all()
+    serializer_class = TestingLabSerializer
+
+
+# BloodBanks Viewset
+class BloodBanksViewSet(viewsets.ModelViewSet):
+    queryset = BloodBanks.objects.all()
+    serializer_class = BloodBanksSerializer
